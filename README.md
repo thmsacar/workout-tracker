@@ -31,7 +31,7 @@ The API starts on `http://localhost:8080`.
 ## Core Endpoints
 
 * `GET /api/v1/exercises` - List exercises
-* * `GET /api/v1/exercises?muscleGroup=CHEST` - Filter exercises by muscle group (e.g., `CHEST`, `BACK`, `LEGS`, `ARMS`, `SHOULDERS`)
+* `GET /api/v1/exercises?muscleGroup=CHEST` - Filter exercises by muscle group (e.g., `CHEST`, `BACK`, `LEGS`, `ARMS`, `SHOULDERS`)
 * `POST /api/v1/users` - Register a new user
 * `POST /api/v1/routines` - Create a routine template
 * `GET /api/v1/routines/user/{id}` - Get routines by user
