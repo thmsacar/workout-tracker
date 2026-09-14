@@ -5,6 +5,7 @@ import com.thmsacar.workouttracker.model.enums.Role;
 import com.thmsacar.workouttracker.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserDataSeeder implements CommandLineRunner {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) {
@@ -25,14 +27,14 @@ public class UserDataSeeder implements CommandLineRunner {
                 User.builder()
                         .username("admin")
                         .email("admin@workout.com")
-                        .password("admin123") //TODO encryption with BCrypt
+                        .password(passwordEncoder.encode("admin123"))
                         .role(Role.ADMIN)
                         .build(),
 
                 User.builder()
                         .username("thomas")
                         .email("thomas@workout.com")
-                        .password("pass123")
+                        .password(passwordEncoder.encode("pass123"))
                         .role(Role.USER)
                         .build()
         );

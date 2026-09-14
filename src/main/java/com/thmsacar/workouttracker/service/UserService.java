@@ -7,6 +7,7 @@ import com.thmsacar.workouttracker.model.User;
 import com.thmsacar.workouttracker.model.enums.Role;
 import com.thmsacar.workouttracker.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserResponse register(UserRegisterRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -29,7 +31,7 @@ public class UserService {
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
 
